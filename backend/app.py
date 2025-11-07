@@ -147,9 +147,15 @@ def retrain_model_endpoint():
         if not os.path.exists(dataset_path):
             return jsonify({"error": "Dataset not found"}), 404
 
-        retrain_model(dataset_path)
-        log_event("retrain_model", "admin", {"dataset": dataset_path})
-        return jsonify({"message": "✅ Model retrained successfully"})
+        # Use MODEL_PATH for both existing and save path
+        result = retrain_model(MODEL_PATH, dataset_path, MODEL_PATH)
+        
+        if result["status"] == "success":
+            log_event("retrain_model", "admin", {"dataset": dataset_path})
+            return jsonify({"message": "✅ Model retrained successfully"})
+        else:
+            return jsonify({"error": result["message"]}), 500
+            
     except Exception as e:
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500
@@ -281,16 +287,59 @@ def predict():
     try:
         if "file" not in request.files:
             return jsonify({"error": "No file provided"}), 400
+        
         file = request.files["file"]
-        df = pd.read_csv(file)
+        if not file.filename.endswith('.csv'):
+            return jsonify({"error": "Please upload a CSV file"}), 400
+            
+        try:
+            df = pd.read_csv(file)
+        except Exception as e:
+            return jsonify({"error": f"Error reading CSV file: {str(e)}"}), 400
+        
         if not model:
             return jsonify({"error": "Model not loaded"}), 500
 
-        predictions = model.predict(df)
-        df["Leak_Prediction"] = predictions.tolist()
-        result = df.to_dict(orient="records")
-        log_event("predict", "admin", {"rows": len(result)})
-        return jsonify({"predictions": result})
+        # Import flexible prediction function
+        from utils.predict_leak import predict_with_flexible_columns
+        
+        try:
+            predictions, processed_df = predict_with_flexible_columns(model, df)
+            
+            # Add predictions to the dataframe
+            processed_df["leak_prediction"] = predictions.tolist()
+            
+            # Try to add confidence scores if model supports it
+            try:
+                confidence = model.predict_proba(processed_df)
+                processed_df["leak_confidence"] = confidence[:, 1].tolist()
+            except:
+                pass
+                
+            result = processed_df.to_dict(orient="records")
+            
+            # Enhanced logging with more details
+            log_event("predict", "admin", {
+                "rows": len(result),
+                "columns": list(df.columns),
+                "leaks_detected": int(sum(predictions)),
+                "input_columns": list(df.columns),
+                "processed_columns": list(processed_df.columns)
+            })
+            
+            return jsonify({
+                "predictions": result,
+                "summary": {
+                    "total_records": len(predictions),
+                    "leaks_detected": int(sum(predictions)),
+                    "leak_percentage": f"{(sum(predictions)/len(predictions)*100):.1f}%",
+                    "original_columns": list(df.columns),
+                    "processed_columns": list(processed_df.columns)
+                }
+            })
+        except ValueError as ve:
+            # Catch specific column mapping errors
+            return jsonify({"error": str(ve)}), 400
     except Exception as e:
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500

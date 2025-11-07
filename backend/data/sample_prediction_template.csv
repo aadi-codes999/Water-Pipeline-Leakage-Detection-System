@@ -1,0 +1,4 @@
+water_supplied_litres,water_consumed_litres,flowrate_lps,pressure_psi,zone_id,timestamp
+1000,950,2.5,45,Z1,2025-11-07 12:00:00
+1200,1150,2.8,42,Z1,2025-11-07 12:15:00
+800,750,2.1,48,Z2,2025-11-07 12:30:00

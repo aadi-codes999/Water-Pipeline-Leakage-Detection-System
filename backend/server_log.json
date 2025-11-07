@@ -176,5 +176,213 @@
         "details": {
             "filename": "cg_cleaned_dataset.csv"
         }
+    },
+    {
+        "timestamp": "2025-11-07 12:50:41",
+        "action": "login",
+        "username": "admin",
+        "details": {}
+    },
+    {
+        "timestamp": "2025-11-07 12:50:54",
+        "action": "upload_dataset",
+        "username": "admin",
+        "details": {
+            "filename": "cg_cleaned_dataset.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 12:51:02",
+        "action": "upload_dataset",
+        "username": "admin",
+        "details": {
+            "filename": "final_raipur_water_datasetin.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 12:51:03",
+        "action": "retrain_model",
+        "username": "admin",
+        "details": {
+            "dataset": "uploads\\final_raipur_water_datasetin.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 13:09:07",
+        "action": "login",
+        "username": "admin",
+        "details": {}
+    },
+    {
+        "timestamp": "2025-11-07 13:09:13",
+        "action": "upload_dataset",
+        "username": "admin",
+        "details": {
+            "filename": "final_raipur_water_datasetin.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 13:09:14",
+        "action": "retrain_model",
+        "username": "admin",
+        "details": {
+            "dataset": "uploads\\final_raipur_water_datasetin.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 14:20:16",
+        "action": "upload_dataset",
+        "username": "admin",
+        "details": {
+            "filename": "final_raipur_water_datasetin.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 14:20:16",
+        "action": "retrain_model",
+        "username": "admin",
+        "details": {
+            "dataset": "uploads\\final_raipur_water_datasetin.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 14:31:01",
+        "action": "login",
+        "username": "admin",
+        "details": {}
+    },
+    {
+        "timestamp": "2025-11-07 14:31:11",
+        "action": "upload_dataset",
+        "username": "admin",
+        "details": {
+            "filename": "final_raipur_water_datasetin.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 14:31:12",
+        "action": "retrain_model",
+        "username": "admin",
+        "details": {
+            "dataset": "uploads\\final_raipur_water_datasetin.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 14:31:20",
+        "action": "predict",
+        "username": "admin",
+        "details": {
+            "rows": 1000,
+            "columns": [
+                "zone_id",
+                "timestamp",
+                "water_supplied_litres",
+                "water_consumed_litres",
+                "flowrate_lps",
+                "pressure_psi",
+                "leak"
+            ],
+            "leaks_detected": 29,
+            "input_columns": [
+                "zone_id",
+                "timestamp",
+                "water_supplied_litres",
+                "water_consumed_litres",
+                "flowrate_lps",
+                "pressure_psi",
+                "leak"
+            ],
+            "processed_columns": [
+                "water_supplied_litres",
+                "water_consumed_litres",
+                "flowrate_lps",
+                "pressure_psi",
+                "leak_prediction"
+            ]
+        }
+    },
+    {
+        "timestamp": "2025-11-07 14:32:17",
+        "action": "predict",
+        "username": "admin",
+        "details": {
+            "rows": 1000,
+            "columns": [
+                "zone_id",
+                "timestamp",
+                "water_supplied_litres",
+                "water_consumed_litres",
+                "flowrate_lps",
+                "pressure_psi",
+                "leak"
+            ],
+            "leaks_detected": 29,
+            "input_columns": [
+                "zone_id",
+                "timestamp",
+                "water_supplied_litres",
+                "water_consumed_litres",
+                "flowrate_lps",
+                "pressure_psi",
+                "leak"
+            ],
+            "processed_columns": [
+                "water_supplied_litres",
+                "water_consumed_litres",
+                "flowrate_lps",
+                "pressure_psi",
+                "leak_prediction"
+            ]
+        }
+    },
+    {
+        "timestamp": "2025-11-07 14:45:51",
+        "action": "upload_dataset",
+        "username": "admin",
+        "details": {
+            "filename": "final_raipur_water_datasetin.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 14:45:53",
+        "action": "retrain_model",
+        "username": "admin",
+        "details": {
+            "dataset": "uploads\\final_raipur_water_datasetin.csv"
+        }
+    },
+    {
+        "timestamp": "2025-11-07 14:46:04",
+        "action": "predict",
+        "username": "admin",
+        "details": {
+            "rows": 1000,
+            "columns": [
+                "zone_id",
+                "timestamp",
+                "water_supplied_litres",
+                "water_consumed_litres",
+                "flowrate_lps",
+                "pressure_psi",
+                "leak"
+            ],
+            "leaks_detected": 29,
+            "input_columns": [
+                "zone_id",
+                "timestamp",
+                "water_supplied_litres",
+                "water_consumed_litres",
+                "flowrate_lps",
+                "pressure_psi",
+                "leak"
+            ],
+            "processed_columns": [
+                "water_supplied_litres",
+                "water_consumed_litres",
+                "flowrate_lps",
+                "pressure_psi",
+                "leak_prediction"
+            ]
+        }
     }
 ]

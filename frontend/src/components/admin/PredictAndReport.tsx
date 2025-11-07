@@ -56,9 +56,20 @@ const PredictAndReport = () => {
         </div>
 
         <form onSubmit={runPredict} className="space-y-4">
-          <div>
+          <div className="space-y-2">
             <Label htmlFor="predict-file">CSV File</Label>
             <Input id="predict-file" type="file" accept=".csv" onChange={handleFile} className="mt-2" />
+            <p className="text-xs text-muted-foreground">
+              Required columns: water_supplied_litres, water_consumed_litres, flowrate_lps, pressure_psi
+            </p>
+            <div className="text-xs bg-muted p-3 rounded">
+              <p className="font-medium mb-1">Example CSV format:</p>
+              <pre className="overflow-x-auto">
+                water_supplied_litres,water_consumed_litres,flowrate_lps,pressure_psi
+                1000,950,2.5,45
+                1200,1150,2.8,42
+              </pre>
+            </div>
           </div>
 
           <Button type="submit" className="water-gradient w-full" disabled={loading || !file}>
